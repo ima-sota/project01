@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,8 +20,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/hello', function () {
+    return view('hello');
+})->name('hello');
+
+
+
+// ログイン画面の表示
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+
+// ログイン処理
 Route::post('/login', [LoginController::class, 'login']);
+
+// ログアウト処理
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 Route::get('/welcome', function () {
     return view('welcome');

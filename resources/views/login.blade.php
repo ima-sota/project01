@@ -30,13 +30,13 @@
       {{-- メールアドレス入力 --}}
       <div class="form-group">
         <label for="email">メールアドレス</label>
-        <input type="email" class="form-control" name="email" id="email" required autofocus>
+        <input type="email" class="form-control" name="user_email" id="email" required autofocus>
       </div>
 
       {{-- パスワード入力 --}}
       <div class="form-group">
         <label for="password">パスワード</label>
-        <input type="password" class="form-control" name="password" id="password" required>
+        <input type="password" class="form-control" name="user_password" id="password" required>
       </div>
 
       {{-- ログインボタン --}}
