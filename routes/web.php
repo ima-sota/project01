@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +17,11 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [ItemController::class, 'showSellerForm'])->name('items.create_with_seller');
 
 Route::get('/hello', function () {
     return view('hello');
@@ -50,5 +53,10 @@ Route::get('/summary', function () {
     return view('summary');
 });
 
-// ItemControllerに対するリソースルート
-Route::resource('items', ItemController::class);
+
+
+// 出品情報入力フォームの表示
+Route::get('/items/create_with_seller', [ItemController::class, 'showSellerForm'])->name('items.create_with_seller');
+
+// Route::get('/items/create_with_seller', [ItemController::class, 'createWithSeller'])->name('items.create_with_seller');
+Route::post('/items/store-with-seller', [ItemController::class, 'storeWithSeller'])->name('items.storeWithSeller');
