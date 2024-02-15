@@ -23,7 +23,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['user_email' => $credentials['user_email'], 'password' => $credentials['user_password']])) {
             $request->session()->regenerate();
-            return redirect('/hello'); // ここを変更
+            return redirect()->route('items.manage');
         }
 
         return back()->withErrors([
@@ -40,6 +40,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/admin');
     }
 }

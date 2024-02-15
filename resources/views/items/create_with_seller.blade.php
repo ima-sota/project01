@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>出品登録</title>
-</head>
+@section('title', '出品情報の登録')
 
-<body>
+@section('content')
   <div class="container">
     <h1>出品情報の登録</h1>
 
@@ -73,6 +67,8 @@
     </form>
 
   </div>
-</body>
+@endsection
 
-</html>
+@section('scripts')
+  <script></script>
+@endsection

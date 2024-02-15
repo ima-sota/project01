@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="ja">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ログイン</title>
-</head>
+@section('title', 'ログイン画面')
 
-<body>
+@section('content')
   <div class="container">
     <h1>ログイン</h1>
 
@@ -43,6 +37,8 @@
       <button type="submit" class="btn btn-primary">ログイン</button>
     </form>
   </div>
-</body>
+@endsection
 
-</html>
+@section('scripts')
+  <script></script>
+@endsection

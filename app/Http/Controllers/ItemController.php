@@ -48,4 +48,54 @@ class ItemController extends Controller
 
         return redirect()->route('hello');
     }
+
+    public function manage()
+    {
+        $items = Item::with('seller')->get(); // 出品者情報も取得
+        return view('items.manage', compact('items'));
+    }
+
+    public function edit($id)
+    {
+        $item = Item::with('seller')->findOrFail($id);
+        return view('items.edit', compact('item'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        // バリデーション
+        $validatedData = $request->validate([
+            'nickname' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'size' => 'required|max:255',
+            'shoes_con' => 'required',
+            'image_url' => 'sometimes|image|max:2048' // 'sometimes'は、画像がアップロードされた場合のみバリデーションを適用
+        ]);
+
+        // アイテムを検索
+        $item = Item::findOrFail($id);
+
+        // 関連する出品者情報を更新
+        $item->seller->update([
+            'seller_name' => $validatedData['nickname'],
+            'seller_email' => $validatedData['email']
+        ]);
+
+        // 画像がアップロードされた場合、画像を保存してパスを更新
+        if ($request->hasFile('image_url')) {
+            $path = $request->file('image_url')->store('images', 'public');
+            $item->item_image = $path;
+        }
+
+        // その他のアイテム情報を更新
+        $item->item_size = $validatedData['size'];
+        $item->item_condition = $validatedData['shoes_con'];
+
+        // データベースに保存
+        $item->save();
+
+        // 更新後、適切なページにリダイレクト
+        return redirect()->route('items.manage')->with('success', 'アイテムが更新されました。');
+    }
 }

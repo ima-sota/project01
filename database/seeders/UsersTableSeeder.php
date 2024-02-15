@@ -17,7 +17,29 @@ class UsersTableSeeder extends Seeder
             'user_name' => '山田太郎',
             'user_email' => 'yamada@example.com',
             'user_password' => Hash::make('password'),
-            'user_role' => 'user',
+            'user_role' => '管理者',
+            'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // ユーザーの初期データを挿入
+        DB::table('users')->insert([
+            'user_name' => '編集者A',
+            'user_email' => 'edit@example.com',
+            'user_password' => Hash::make('password'),
+            'user_role' => '編集',
+            'remember_token' => Str::random(10),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        // ユーザーの初期データを挿入
+        DB::table('users')->insert([
+            'user_name' => '閲覧者A',
+            'user_email' => 'view@example.com',
+            'user_password' => Hash::make('password'),
+            'user_role' => '閲覧',
             'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
